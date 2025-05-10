@@ -2,7 +2,9 @@ Project Title : café order management system
 
 Description:
 
-This project is a complete database management system for a simple café order management system, created as part of the Week 8 assignment. The database design includes the following key elements:
+This project is a complete database management system for a simple café order management system, created as part of the Week 8 assignment. 
+
+The database design includes the following key elements:
 	1.	Customer Table:
 	•	Columns: customer_id, customer_name, customer_email, customer_phone
 	•	This table stores the details of the customers who place orders in the café. Each customer can have multiple orders.
@@ -18,6 +20,7 @@ This project is a complete database management system for a simple café order m
 	5.	Category Table:
 	•	Columns: category_id, category_name
 	•	This table stores the categories of items in the café, such as beverages, food, etc. Each item belongs to one category.
+
 
 Relationships:
 	•	Customer and Orders (One-to-Many):
