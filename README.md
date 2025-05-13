@@ -1,42 +1,76 @@
-Project Title : café order management system
+# Café Order Management System  
 
-Description:
+## *Description:*  
+This project is a complete database management system for a café, developed as part of the Week 8 assignment. It provides a structured way to manage customer orders, track items, and categorize the menu efficiently.  
 
-This project is a complete database management system for a simple café order management system, created as part of the Week 8 assignment. 
+---
 
-The database design includes the following key elements:
-	1.	Customer Table:
-	•	Columns: customer_id, customer_name, customer_email, customer_phone
-	•	This table stores the details of the customers who place orders in the café. Each customer can have multiple orders.
-	2.	Order Table:
-	•	Columns: order_id, customer_id, order_date, total_amount
-	•	This table stores each order placed by customers. It is related to the Customer table via the customer_id. Each order may contain multiple items.
-	3.	Order Items Table (Many-to-Many relationship between Orders and Items):
-	•	Columns: order_item_id, order_id, item_id, quantity, price
-	•	This table stores the individual items in an order. It is used to manage the many-to-many relationship between Orders and Items.
-	4.	Item Table:
-	•	Columns: item_id, item_name, item_price, category_id
-	•	This table stores all the items available in the café. Each item is linked to a specific category in the Categories table.
-	5.	Category Table:
-	•	Columns: category_id, category_name
-	•	This table stores the categories of items in the café, such as beverages, food, etc. Each item belongs to one category.
+## *Database Design:*  
+The database includes the following main tables:  
 
+### *1. Customers Table:*  
+- *Columns:* Customer_ID (PK), Name, Contact_Info  
+- *Purpose:* Stores customer details.  
+- *Relationship:*  
+  - Each customer can place multiple orders (One-to-Many).  
 
-Relationships:
-	•	Customer and Orders (One-to-Many):
-Each customer can place multiple orders, but each order is linked to a single customer.
-	•	Orders and Order Items (One-to-Many):
-Each order can have multiple items, but each order item belongs to a single order.
-	•	Items and Order Items (Many-to-Many via Order Items):
-Each item can appear in multiple orders, and each order can contain multiple items, which is managed through the Order Items table.
-	•	Items and Categories (Many-to-One):
-Each item belongs to one category, but a category can have multiple items.
+### *2. Menu_Items Table:*  
+- *Columns:* Item_ID (PK), Item_Name, Price, Category  
+- *Purpose:* Stores details of each item available in the café.  
+- *Notes:*  
+  - The *Category* is stored as a simple text field without a separate table for categories.  
 
-How to Run / Setup the Project:
-	1.	Clone the repository:
+### *3. Orders Table:*  
+- *Columns:* Order_ID (PK), Customer_ID (FK), Order_Date, Total_Amount  
+- *Purpose:* Stores order details.  
+- *Relationship:*  
+  - Each order is linked to a single customer but can contain multiple items (One-to-Many).  
+  - The *Customer_ID* is a foreign key referencing the *Customers* table.  
 
-git clone https://github.com/amanynmohamed/Database_week8_Assignment.git
+### *4. Order_Details Table:*  
+- *Columns:* Order_Detail_ID (PK), Order_ID (FK), Item_ID (FK), Quantity, Subtotal  
+- *Purpose:* Manages the many-to-many relationship between orders and items.  
+- *Relationship:*  
+  - Each order can have multiple items, and each item can appear in multiple orders.  
+  - *Order_ID* is a foreign key referencing the *Orders* table.  
+  - *Item_ID* is a foreign key referencing the *Menu_Items* table.  
 
+---
+
+## *Relationships:*  
+- *Customers to Orders (One-to-Many):*  
+   - A single customer can place multiple orders, but each order is linked to a single customer.  
+
+- *Orders to Order_Details (One-to-Many):*  
+   - Each order can contain multiple items, but each order item belongs to a single order.  
+
+- *Menu_Items to Order_Details (One-to-Many):*  
+   - Each item can appear in multiple orders, and each order can contain multiple items.  
+
+---
+
+## *Foreign Key Details:*  
+- *Customers Table:*  
+  - Customer_ID (PK)  
+
+- *Menu_Items Table:*  
+  - Item_ID (PK)  
+
+- *Orders Table:*  
+  - Order_ID (PK)  
+  - Customer_ID (FK) → References Customers.Customer_ID  
+
+- *Order_Details Table:*  
+  - Order_Detail_ID (PK)  
+  - Order_ID (FK) → References Orders.Order_ID  
+  - Item_ID (FK) → References Menu_Items.Item_ID  
+
+---
+
+## *Setup and How to Run the Project:*  
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/amanynmohamed/Database_week8_Assignment.git
 
 	2.	Open MySQL Workbench or any other SQL client.
 	3.	Run the SQL script to create the database schema and tables.
@@ -45,4 +79,6 @@ git clone https://github.com/amanynmohamed/Database_week8_Assignment.git
 
 ERD Diagram:
 
-The ERD (Entity-Relationship Diagram) for this project is included as a PDF file in this repository.
+The ERD (Entity-Relationship Diagram) for this project is included as a PDF file in this repository. It visually represents the relationships between the tables.
+
+
